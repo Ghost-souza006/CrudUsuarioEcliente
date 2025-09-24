@@ -5,8 +5,9 @@
  */
 package br.ulbra.view;
 
-import br.ulbra.controller.ClienteController;
-import br.ulbra.model.Cliente;
+
+
+import br.ulbra.Controller.ClienteControler;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ClienteView extends javax.swing.JFrame {
 
-    private final ClienteController controller;
+    private final ClienteControler controller;
     private DefaultTableModel model;
 
     /**
@@ -23,7 +24,7 @@ public class ClienteView extends javax.swing.JFrame {
      */
     public ClienteView() {
         initComponents();
-        controller = new ClienteController();
+        controller = new ClienteControler();
         initTableModel();
         atualizarTabela();
         setBotoes(1);
