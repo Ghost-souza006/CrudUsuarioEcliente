@@ -3,20 +3,75 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ulbra.model;
+package br.ulbra.Model;
 
 /**
  *
  * @author aluno.saolucas
  */
 public class Usuario {
+    private int id;
+    private String nome;
+    private String login;
+    private String senha;
+    private Boolean ativo;
 
-    public String getNome() {
+    public Usuario(int aInt, String string, String string0, String string1, String string2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public Boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getNome() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
     
+    public Usuario(){
+    }
+    public Usuario(int id, String nome, String login, String senha, Boolean ativo){
+        this.id=id;
+        this.nome=nome;
+        this.login=login;
+        this.senha=senha;
+        this.ativo=ativo;
+    }
+     public String toString(){
+        return "cod: "+ id +"Nome: "+nome+"login: "+login+"Senha: "+senha + "ativo" + ativo;
+        
+    }
 }

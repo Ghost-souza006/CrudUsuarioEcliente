@@ -71,7 +71,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtID" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtID" min="-2" pref="114" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
@@ -212,9 +212,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtID">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -228,9 +225,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNome">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField1"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
@@ -244,9 +238,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEmail">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField2"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -260,9 +251,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTelefone">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField3"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnSalvar">
           <Properties>

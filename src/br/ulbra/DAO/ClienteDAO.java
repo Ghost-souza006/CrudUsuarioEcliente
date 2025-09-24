@@ -1,63 +1,103 @@
-package br.ulbra.dao;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.ulbra.DAO;
 
-import static br.ulbra.dao.AbstractDAO.getConnection;
-import br.ulbra.model.Cliente;
-import java.sql.*;
+import br.ulbra.Model.Cliente;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteDAO extends AbstractDAO {
+/**
+ *
+ * @author aluno.saolucas
+ */
+public class ClienteDAO extends AbstractDAO implements CrudRepository<Cliente> {
 
-    public void create(Cliente c) {
-        String sql = "INSERT INTO cliente (nome, email, fone) VALUES (?, ?, ?)";
+    public void salvar(Cliente c) throws SQLException {
+        String sql = "INSERT INTO dbcliente (nome, email, telefone) VALUES (?, ?, ?)";
         try (Connection con = getConnection();
-             PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, c.getNome());
-            stmt.setString(2, c.getEmail());
-            stmt.setString(3, c.getFone());
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao salvar cliente: " + e.getMessage(), e);
-        }
-    }
-
-    public List<Cliente> read() {
-        List<Cliente> clientes = new ArrayList<>();
-        String sql = "SELECT * FROM cliente";
-        try (Connection con = getConnection();
-             PreparedStatement stmt = con.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
-            while (rs.next()) {
-                Cliente c = new Cliente();
-                c.setId(rs.getInt("id"));
-                c.setNome(rs.getString("nome"));
-                c.setEmail(rs.getString("email"));
-                c.setFone(rs.getString("fone"));
-                clientes.add(c);
+                PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, c.getNome());
+            ps.setString(2, c.getEmail());
+            ps.setString(3, c.getTelefone());
+            int affected = ps.executeUpdate();
+            if (affected == 0) {
+                throw new SQLException("Falha ao inserir cliente.");
             }
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao listar clientes: " + e.getMessage(), e);
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    c.setId(rs.getInt(1));
+                }
+            }
         }
-        return clientes;
     }
 
-    public void salvar(Cliente c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Cliente buscarPorId(int id) throws SQLException {
+        String sql = "SELECT id, nome, email, telefone FROM dbcliente WHERE id = ?";
+        try (Connection con = getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return new Cliente(
+                            rs.getInt("id"),
+                            rs.getString("nome"),
+                            rs.getString("email"),
+                            rs.getString("telefone")
+                    );
+                }
+            }
+        }
+        return null;
     }
 
-    public Cliente buscarPorId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Cliente> listar() throws SQLException {
+        String sql="select id, nome, email, telefone FROM dbcliente ORDER by id";
+        List<Cliente> lista = new ArrayList<>();
+        try(Connection con = getConnection();  PreparedStatement ps = con.prepareStatement(sql); 
+                ResultSet rs= ps.executeQuery()){  //aqui mosrtra e não modifica
+             while(rs.next()){
+                Cliente c = new Cliente(
+                rs.getInt("id"),
+                rs.getString("nome"),
+                rs.getString("email"),
+                rs.getString("telefone"));
+                lista.add(c);
+
+             }
+             
+        }
+        return lista;
+
+    }
+    
+
+    public void atualizar(Cliente c) throws SQLException {
+        String sql="UPDATE dbcliente set nome= ?, email=?, telefone=? where id=?";
+        try(Connection con= getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setString(1,c.getNome());
+            ps.setString(2,c.getEmail());
+            ps.setString(3,c.getTelefone());
+            ps.setInt(4,c.getId());
+            ps.executeUpdate();  //mexe, modifica os objetos
+        }
     }
 
-    public List<Cliente> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void remover(int id) throws SQLException {
+        String sql = "DELETE FROM dbcliente WHERE id=?";
+        try(Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(sql)){
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        }
     }
+    
 
-    public void atualizar(Cliente c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void remover(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

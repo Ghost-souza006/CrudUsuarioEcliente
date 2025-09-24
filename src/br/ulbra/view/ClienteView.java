@@ -15,17 +15,21 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ClienteView extends javax.swing.JFrame {
 
+    private final ClienteController controller;
+    private DefaultTableModel model;
+
     /**
      * Creates new form ClienteView
      */
     public ClienteView() {
         initComponents();
-       controller = new ClienteController();
+        controller = new ClienteController();
         initTableModel();
         atualizarTabela();
         setBotoes(1);
     }
-public void setBotoes(int op) {
+
+    public void setBotoes(int op) {
         switch (op) {
             case 1:
                 btnSalvar.setEnabled(false);
@@ -33,14 +37,15 @@ public void setBotoes(int op) {
                 btnExcluir.setEnabled(true);
                 break;
             default:
+
                 btnSalvar.setEnabled(true);
                 btnAlterar.setEnabled(false);
                 btnExcluir.setEnabled(false);
 
         }
-           }
+    }
 
- private void initTableModel() {
+    private void initTableModel() {
         javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{"ID", "Nome", "Email", "Telefone"}
@@ -52,7 +57,8 @@ public void setBotoes(int op) {
         };
         tbClientesetModel(model);
     }
- private void atualizarTabela() {
+
+    private void atualizarTabela() {
         try {
             javax.swing.table.DefaultTableModel modelTbl = (javax.swing.table.DefaultTableModel) tbCliente.getModel();
             modelTbl.setRowCount(0);
@@ -64,6 +70,7 @@ public void setBotoes(int op) {
             javax.swing.JOptionPane.showMessageDialog(this, "Erro ao listar: " + ex.getMessage());
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -110,25 +117,17 @@ public void setBotoes(int op) {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("ID");
 
-        txtID.setText("jTextField1");
-
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nome");
-
-        txtNome.setText("jTextField1");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("E-mail");
 
-        txtEmail.setText("jTextField2");
-
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Telefone");
-
-        txtTelefone.setText("jTextField3");
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +219,7 @@ public void setBotoes(int op) {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -321,7 +320,7 @@ public void setBotoes(int op) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-          try {
+        try {
             String nome = txtNome.getText().trim();
             String email = txtEmail.getText().trim();
             String tel = txtTelefone.getText().trim();
@@ -329,19 +328,19 @@ public void setBotoes(int op) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Nome é obrigatório");
                 return;
             }
-             Cliente c = new Cliente(0, nome, email, tel);
+            Cliente c = new Cliente(0, nome, email, tel);
             controller.salvar(c);
             javax.swing.JOptionPane.showMessageDialog(this, "Cliente salvo (ID=" + c.getId() + ")");
             atualizarTabela();
             limparCampos();
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             javax.swing.JOptionPane.showMessageDialog(this, "Erro ao salvar: " + ex.getMessage());
         }
-          
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-          try {
+        try {
             int id = Integer.parseInt(txtID.getText());
             String nome = txtNome.getText().trim();
             String email = txtEmail.getText().trim();
@@ -355,20 +354,19 @@ public void setBotoes(int op) {
             javax.swing.JOptionPane.showMessageDialog(this, "Selecione um cliente para atualizar");
         } catch (Exception ex) {
             javax.swing.JOptionPane.showMessageDialog(this, "Erro ao atualizar: " + ex.getMessage());
-        }   
+        }
 
-
-    }                
+    }
 
     private void limparCampos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     private void tbClientesetModel(DefaultTableModel model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
-                          
+
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -389,16 +387,28 @@ public void setBotoes(int op) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                }
+                
+
+}
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteView.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ClienteView.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ClienteView.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        
+
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ClienteView.class
+.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -460,7 +470,7 @@ public void setBotoes(int op) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void limparCampos() {
+    pivate void limparCampos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

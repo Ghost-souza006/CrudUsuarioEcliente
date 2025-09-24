@@ -1,32 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.ulbra.model;
+package br.ulbra.Model;
 
-/**
- *
- * @author qijef
- */
+
 public class Cliente {
-
     private int id;
     private String nome;
     private String email;
     private String telefone;
 
-    public Cliente() {
-    }
-
-    public Cliente(int id, String nome, String email, String telefone) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-    }
-
-    // getters / setters
     public int getId() {
         return id;
     }
@@ -58,17 +38,20 @@ public class Cliente {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-    @Override
-    public String toString() {
-        return nome + " <" + email + ">";
+    
+    public Cliente(){
+        
     }
-
-    public String getFone() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Cliente(int id, String nome, String email, String telefone){
+        this.id=id;
+        this.nome=nome;
+        this.email=email;
+        this.telefone=telefone;
     }
-
-    public void setFone(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public String toString(){
+        return "cod: "+ id +"Nome: "+nome+"E-mail: "+email+"Telefone: "+telefone;
+        
     }
+    
 }

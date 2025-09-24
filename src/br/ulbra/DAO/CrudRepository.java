@@ -3,25 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ulbra.dao;
+package br.ulbra.DAO;
 
 import java.sql.SQLException;
 import java.util.List;
 
 /**
  *
- * @author qijef
+ * @author aluno.saolucas
  */
 public interface CrudRepository<T> {
 
-    void salvar(T obj) throws SQLException;
+    public void salvar(T obj) throws SQLException;
 
-    T buscarPorId(int id) throws SQLException;
+    public T buscarPorId(int id) throws SQLException;
 
-    List<T> listar() throws SQLException;
+    public List<T> listar() throws SQLException;
 
-    void atualizar(T obj) throws SQLException;
+    public void atualizar(T obj) throws SQLException;
 
-    void remover(int id) throws SQLException;
-
+    public void remover(int id) throws SQLException;
 }
