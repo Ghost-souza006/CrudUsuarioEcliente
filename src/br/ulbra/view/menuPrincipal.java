@@ -3,21 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ullbra.view;
+package br.ulbra.view;
 
 /**
  *
  * @author aluno.saolucas
  */
-public class MenuPrincipalView extends javax.swing.JFrame {
+public class menuPrincipal extends javax.swing.JFrame {
 
     /**
-     * Creates new form MenuPrincipalView
+     * Creates new form menuPrincipal
      */
-    public MenuPrincipalView() {
+    public menuPrincipal() {
         initComponents();
     }
+private void mnClienteActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        new ClienteView().setVisible(true);
+    }                                          
 
+    private void mnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        new usuarioView().setVisible(true);
+    }                                        
+
+    private void mnSairActionPerformed(java.awt.event.ActionEvent evt) {                                      
+       dispose();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,68 +37,49 @@ public class MenuPrincipalView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu1 = new javax.swing.JMenu();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-
-        jMenu1.setText("jMenu1");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 442, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 337, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        jMenu4.setBackground(new java.awt.Color(51, 51, 51));
-        jMenu4.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu4.setText("Cadastro");
+        jMenu1.setBackground(new java.awt.Color(51, 51, 51));
+        jMenu1.setText("Cadastros");
 
-        jMenu6.setText("Usuarios");
-        jMenu4.add(jMenu6);
+        jMenu3.setText("Usuarios");
+        jMenu1.add(jMenu3);
 
-        jMenu7.setText("Clientes");
-        jMenu4.add(jMenu7);
+        jMenu4.setText("Clientes");
+        jMenu1.add(jMenu4);
 
-        jMenu8.setText("Sair");
-        jMenu4.add(jMenu8);
+        jMenu5.setText("Sair");
+        jMenu1.add(jMenu5);
 
-        jMenuBar2.add(jMenu4);
+        jMenuBar1.add(jMenu1);
 
-        jMenu5.setBackground(new java.awt.Color(51, 51, 51));
-        jMenu5.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu5.setText("Sobre");
-        jMenuBar2.add(jMenu5);
+        jMenu2.setBackground(new java.awt.Color(51, 51, 51));
+        jMenu2.setForeground(new java.awt.Color(204, 204, 204));
+        jMenu2.setText("Sobre");
+        jMenuBar1.add(jMenu2);
 
-        setJMenuBar(jMenuBar2);
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,7 +89,9 @@ public class MenuPrincipalView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -121,34 +114,31 @@ public class MenuPrincipalView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(menuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(menuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(menuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(menuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipalView().setVisible(true);
+                new menuPrincipal().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
